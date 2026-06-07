@@ -1,29 +1,22 @@
-# react-moto-cursor 🚀
+# 🎈 Magic Custom Cursor (react-moto-cursor)
 
-A reusable, Awwwards-inspired custom cursor wrapper component for React and Next.js. Now featuring smooth spring/lerp physics, tactile click feedback, dynamic element hover states, a `<Magnetic>` wrapper component, and programmatic control via context hooks.
+Hey there! Want to add a super cool **Magic Cursor** to your website? It trails behind your mouse smoothly, shrinks when you click, and pulls buttons towards itself like a magnet! 🧲✨
 
----
-
-## Features
-
-- **Fluid Trailing Animation:** Smooth linear interpolation (Lerp) using `requestAnimationFrame` for buttery-smooth movement.
-- **Tactile Click Feedback:** Animated cursor scale-down on mouse click (`mousedown` / `mouseup`).
-- **Dynamic Hover States:** Automatically morphs and displays custom text/styling when hovering over links (`A` tags), buttons, and sliders (e.g. Swiper).
-- **Hollow Ring & Text Variants:** Support for `dot` (small circle), `ring` (hollow outline), and `text` (shows text by default) base styles.
-- **Magnetic Pull Wrapper:** Easily wrap elements to draw them towards the cursor magnetically.
-- **Context Hook API (`useCustomCursor`):** Control the cursor programmatically from any child component.
-- **Developer Attributes:** Override cursor text, variant, or icon on any element using simple HTML data-attributes.
-- **Accessibility & Touch Optimizations:** Safely unmounts and falls back to system cursor on touch devices or when the user has enabled OS-level `prefers-reduced-motion`.
+Here is how you can use it in **3 Easy Steps!**
 
 ---
 
-## Installation
+## 🚀 Step 1: Install it!
+Open your terminal (cmd/terminal) inside your project and run this command:
 
 ```bash
 npm install react-moto-cursor
 ```
 
-Import the stylesheet in your root layout file (e.g., `_app.js`, `layout.js`, or `index.js`):
+---
+
+## 🎨 Step 2: Add CSS (Styling)
+Put this line at the very top of your main file (like `layout.js`, `_app.js`, or `index.js`):
 
 ```javascript
 import 'react-moto-cursor/dist/index.css';
@@ -31,40 +24,34 @@ import 'react-moto-cursor/dist/index.css';
 
 ---
 
-## Quick Start
+## 💻 Step 3: Copy and Paste this Code!
+Wrap your website code inside `<CustomCursor>`. Here is an example:
 
 ```jsx
 import React from 'react';
 import { CustomCursor, Magnetic } from 'react-moto-cursor';
-import 'react-moto-cursor/dist/index.css';
 
 export default function App() {
   return (
+    /* 1. Put this wrapper around your page! */
     <CustomCursor variant="dot">
-      <main style={{ padding: '100px', textAlign: 'center' }}>
-        <h1>React Moto Cursor</h1>
+      <div style={{ padding: '100px', textLeave: 'center' }}>
         
-        {/* Standard link (will show "VIEW" and scale up) */}
-        <a href="#explore" style={{ margin: '20px', display: 'inline-block' }}>
-          Explore Gallery
-        </a>
+        <h1>My Magic Website 🪄</h1>
 
-        {/* Magnetic Button (will pull towards mouse, showing "CLICK") */}
-        <Magnetic range={80} strength={0.4}>
-          <button style={{ padding: '12px 24px', margin: '20px' }}>
-            Get Started
+        {/* 2. Hover here to see the cursor change to "VIEW" automatically! */}
+        <a href="#explore">Hover over me!</a>
+
+        <br /><br />
+
+        {/* 3. Wrap any button in <Magnetic> to make it attract like a magnet! */}
+        <Magnetic>
+          <button style={{ padding: '10px 20px' }}>
+            I am a Magnet Button 🧲
           </button>
         </Magnetic>
-        
-        {/* Override attributes */}
-        <div 
-          data-cursor-text="ZOOM" 
-          data-cursor-variant="custom"
-          style={{ width: '200px', height: '200px', background: '#333', margin: '40px auto' }}
-        >
-          Hover over me to Zoom
-        </div>
-      </main>
+
+      </div>
     </CustomCursor>
   );
 }
@@ -72,81 +59,32 @@ export default function App() {
 
 ---
 
-## CustomCursor Props
+## 🔮 Cool Tricks (Easy Customs)
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `children` | `ReactNode` | *Required* | Children components wrapped inside the custom cursor tracking boundary. |
-| `text` | `string` | `"DRAG"` | Default text displayed inside the cursor on drag/slider components. |
-| `variant` | `"dot" \| "ring" \| "text"` | `"dot"` | Base style variant of the cursor. |
-| `bgColor` | `string` | `var(--primary, #111)` | Default cursor background color. |
-| `color` | `string` | `"#ffffff"` | Default cursor text/icon color. |
-| `size` | `number` | `10` (dot), `20` (ring) | Default width/height of the cursor in pixels. |
-| `hoverBgColor` | `string` | | Background color on hover transitions. |
-| `hoverColor` | `string` | | Text/icon color on hover transitions. |
-| `hoverSize` | `number` | `70` / `80` | Dimension (px) on hover transitions. |
-| `className` | `string` | `""` | Additional CSS class for the wrapper div. |
-
----
-
-## HTML Data-Attributes
-
-You can add these custom attributes to any HTML element inside `<CustomCursor>` to override the cursor's appearance on-the-fly:
-
-- **`data-cursor-text="YOUR_TEXT"`**: Displays custom text inside the cursor.
-- **`data-cursor-variant="YOUR_VARIANT"`**: Adds a `variant-YOUR_VARIANT` CSS class, allowing you to hook in custom CSS animations/styles.
-- **`data-cursor-icon="✨"`**: Renders an emoji, text icon, or special character inside the cursor.
+### 1. Change Colors & Size 🎨
+You can customize the cursor shape easily by adding props:
 
 ```jsx
-<div data-cursor-text="EXPLORE" data-cursor-variant="custom">
-  Hover for explore style
+// A cyan ring cursor that turns pink and grows to 80px when you hover on links!
+<CustomCursor 
+  variant="ring" 
+  bgColor="cyan" 
+  hoverBgColor="pink" 
+  hoverSize={80}
+>
+  {/* Your code here */}
+</CustomCursor>
+```
+
+### 2. Custom Hover Text or Emojis 💬
+Want the cursor to say something special when you hover over a specific card or image? Just add `data-cursor-text` or `data-cursor-icon` to that element:
+
+```jsx
+// This will show "BOOM 💥" inside the cursor when hovered!
+<div data-cursor-text="BOOM" data-cursor-icon="💥">
+  Hover me for a surprise!
 </div>
 ```
 
 ---
-
-## Magnetic Wrapper Props
-
-Import the `<Magnetic>` component to wrap buttons or navigation nodes to create an Awwwards magnetic pull effect.
-
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `children` | `ReactElement` | *Required* | Element to make magnetic (clones element to apply refs/transforms). |
-| `range` | `number` | `60` | Pixel radius around the button to activate the pull. |
-| `strength` | `number` | `0.35` | Intensity of the pull towards the mouse (0 = none, 1 = direct tracking). |
-
----
-
-## Programmatic Control Hook (`useCustomCursor`)
-
-You can access programmatic controls from any nested child component using the `useCustomCursor` hook.
-
-```jsx
-import { useCustomCursor } from 'react-moto-cursor';
-
-function MyCustomCard() {
-  const { setCursorText, setCursorVariant, setCursorIcon, setIsVisible } = useCustomCursor();
-
-  return (
-    <div 
-      onMouseEnter={() => {
-        setCursorText("PLAY");
-        setCursorVariant("video");
-      }}
-      onMouseLeave={() => {
-        // Resets automatically
-        setCursorText("");
-        setCursorVariant("default");
-      }}
-    >
-      Hover to change cursor dynamically
-    </div>
-  );
-}
-```
-
----
-
-## License
-
-MIT
+Have fun building! 🌟
