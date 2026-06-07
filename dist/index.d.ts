@@ -11,15 +11,17 @@ interface CustomCursorProps {
     children: React.ReactNode;
     text?: string;
     className?: string;
-    variant?: "dot" | "ring" | "text" | string;
+    variant?: "dot" | "ring" | "text" | "line" | string;
     bgColor?: string;
     color?: string;
     size?: number;
     hoverBgColor?: string;
     hoverColor?: string;
     hoverSize?: number;
+    borderColor?: string;
+    ringColor?: string;
 }
-declare function CustomCursor({ children, text, className, variant, bgColor, color, size, hoverBgColor, hoverColor, hoverSize, }: CustomCursorProps): React.JSX.Element;
+declare function CustomCursor({ children, text, className, variant, bgColor, color, size, hoverBgColor, hoverColor, hoverSize, borderColor, ringColor, }: CustomCursorProps): React.JSX.Element;
 
 interface MagneticProps {
     children: React.ReactElement<any>;

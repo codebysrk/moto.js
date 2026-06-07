@@ -31,13 +31,15 @@ export interface CustomCursorProps {
   children: React.ReactNode;
   text?: string;
   className?: string;
-  variant?: "dot" | "ring" | "text" | string;
+  variant?: "dot" | "ring" | "text" | "line" | string;
   bgColor?: string;
   color?: string;
   size?: number;
   hoverBgColor?: string;
   hoverColor?: string;
   hoverSize?: number;
+  borderColor?: string;
+  ringColor?: string;
 }
 
 export default function CustomCursor({
@@ -51,6 +53,8 @@ export default function CustomCursor({
   hoverBgColor,
   hoverColor,
   hoverSize,
+  borderColor,
+  ringColor,
 }: CustomCursorProps) {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -204,6 +208,8 @@ export default function CustomCursor({
     "--cursor-hover-bg": hoverBgColor,
     "--cursor-hover-color": hoverColor,
     "--cursor-hover-size": hoverSize !== undefined ? `${hoverSize}px` : undefined,
+    "--cursor-border-color": borderColor,
+    "--cursor-ring-color": ringColor,
   } as React.CSSProperties;
 
   // Optimize context value recreation

@@ -62,7 +62,7 @@
   width: var(--cursor-size, 10px);
   height: var(--cursor-size, 10px);
   background-color: var(--cursor-bg, var(--primary, #111111));
-  border: none;
+  border: 1px solid var(--cursor-border-color, transparent);
 }
 
 /* Base Variant: Ring (hollow circle outline) */
@@ -70,7 +70,7 @@
   width: var(--cursor-size, 20px);
   height: var(--cursor-size, 20px);
   background-color: transparent;
-  border: 2px solid var(--cursor-bg, var(--primary, #111111));
+  border: 2px solid var(--cursor-ring-color, var(--cursor-border-color, var(--cursor-bg, var(--primary, #111111))));
 }
 
 /* Base Variant: Text (circle with text visible by default) */
@@ -79,6 +79,15 @@
   height: var(--cursor-size, 65px);
   background-color: var(--cursor-bg, var(--primary, #111111));
   color: var(--cursor-color, #ffffff);
+  border: 1px solid var(--cursor-border-color, transparent);
+}
+
+/* Base Variant: Line (vertical line caret) */
+.awwwards-cursor-content.base-variant-line.variant-default {
+  width: var(--cursor-size, 2px);
+  height: var(--cursor-hover-size, 28px);
+  background-color: var(--cursor-bg, var(--primary, #111111));
+  border-radius: 0;
   border: none;
 }
 
