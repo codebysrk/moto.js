@@ -23,24 +23,29 @@
 }
 
 .awwwards-cursor-content {
-  width: 65px;
-  height: 65px;
+  width: var(--cursor-size, 10px);
+  height: var(--cursor-size, 10px);
   border-radius: 50%;
-  background-color: var(--primary, #111111);
-  color: #ffffff;
+  background-color: var(--cursor-bg, var(--primary, #111111));
+  color: var(--cursor-color, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  transform: translate(-50%, -50%) scale(0.3);
+  transform: translate(-50%, -50%) scale(0);
   opacity: 0;
   transition: 
     opacity 0.3s ease, 
     transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    background-color 0.3s ease;
+    background-color 0.3s ease,
+    width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    border 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .awwwards-cursor-content.visible {
@@ -48,12 +53,71 @@
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Interactive hover state */
-.awwwards-cursor-content.hovering-clickable {
-  transform: translate(-50%, -50%) scale(1.2);
-  background-color: #ffffff;
-  color: #111111;
-  mix-blend-mode: difference; /* Beautiful blend effect */
+.awwwards-cursor-content.pressed {
+  transform: translate(-50%, -50%) scale(0.8) !important;
+}
+
+/* Base Variant: Dot (default small dot) */
+.awwwards-cursor-content.base-variant-dot.variant-default {
+  width: var(--cursor-size, 10px);
+  height: var(--cursor-size, 10px);
+  background-color: var(--cursor-bg, var(--primary, #111111));
+  border: none;
+}
+
+/* Base Variant: Ring (hollow circle outline) */
+.awwwards-cursor-content.base-variant-ring.variant-default {
+  width: var(--cursor-size, 20px);
+  height: var(--cursor-size, 20px);
+  background-color: transparent;
+  border: 2px solid var(--cursor-bg, var(--primary, #111111));
+}
+
+/* Base Variant: Text (circle with text visible by default) */
+.awwwards-cursor-content.base-variant-text.variant-default {
+  width: var(--cursor-size, 65px);
+  height: var(--cursor-size, 65px);
+  background-color: var(--cursor-bg, var(--primary, #111111));
+  color: var(--cursor-color, #ffffff);
+  border: none;
+}
+
+/* Hover State: Link (Awwwards blend style) */
+.awwwards-cursor-content.variant-link {
+  width: var(--cursor-hover-size, 70px);
+  height: var(--cursor-hover-size, 70px);
+  background-color: var(--cursor-hover-bg, #ffffff);
+  color: var(--cursor-hover-color, #111111);
+  mix-blend-mode: difference;
+  border: none;
+}
+
+/* Hover State: Button (Solid scale with clickable response) */
+.awwwards-cursor-content.variant-button {
+  width: var(--cursor-hover-size, 70px);
+  height: var(--cursor-hover-size, 70px);
+  background-color: var(--cursor-hover-bg, var(--primary, #111111));
+  color: var(--cursor-hover-color, #ffffff);
+  border: none;
+}
+
+/* Hover State: Drag (Larger drag area) */
+.awwwards-cursor-content.variant-drag {
+  width: var(--cursor-hover-size, 80px);
+  height: var(--cursor-hover-size, 80px);
+  background-color: var(--cursor-hover-bg, var(--primary, #111111));
+  color: var(--cursor-hover-color, #ffffff);
+  border: none;
+}
+
+/* Hover State: Custom (Developer defined override via attributes) */
+.awwwards-cursor-content.variant-custom {
+  width: var(--cursor-hover-size, 70px);
+  height: var(--cursor-hover-size, 70px);
+  background-color: var(--cursor-hover-bg, #ffffff);
+  color: var(--cursor-hover-color, #111111);
+  mix-blend-mode: difference;
+  border: none;
 }
 
 /* Touch devices: hide completely */
